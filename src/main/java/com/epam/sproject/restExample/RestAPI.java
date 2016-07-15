@@ -1,4 +1,4 @@
-package com.epam.sproject.restAPI;
+package com.epam.sproject.restExample;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,7 +7,8 @@ import java.security.Principal;
 
 
 /**
- * Rest API
+ * Rest API Example
+ * @author Vadim
  */
 @RestController
 public class RestAPI {

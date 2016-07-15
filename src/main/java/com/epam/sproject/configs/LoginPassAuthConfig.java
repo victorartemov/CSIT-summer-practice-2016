@@ -1,5 +1,8 @@
 package com.epam.sproject.configs;
 
+import com.epam.sproject.dao.UserDAO;
+import com.epam.sproject.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,9 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Custom Login - Pass authorization
@@ -22,30 +23,27 @@ import java.util.Map;
 @Configuration
 public class LoginPassAuthConfig extends GlobalAuthenticationConfigurerAdapter {
 
+    /**
+     * Init storage
+     */
+    @Autowired
+    private UserDAO storage;
+
     @Override
     public void init(AuthenticationManagerBuilder auth) {
-
-        //here would be @Autowired Database
-        //DATABASE - our current database =)
-
-        Map<String, String> DATABASE = new HashMap<>();
-        DATABASE.put("user1", "pass1");
-        DATABASE.put("user2", "pass2");
-        DATABASE.put("user3", "pass3");
-        DATABASE.put("user4", "pass4");
-        DATABASE.put("user5", "pass5");
 
         auth.authenticationProvider(new AuthenticationProvider() {
             @Override
             public Authentication authenticate(Authentication authentication) throws AuthenticationException {
                 String login = authentication.getName();
                 String password = authentication.getCredentials().toString();
-
-                //check user from database
-                if (DATABASE.containsKey(login) && DATABASE.get(login).compareTo(password) == 0) {
+                //check login/pass and try to get User information
+                final User user = storage.getUserByLoginPass(login, password);
+                if (user != null) {
                     List<GrantedAuthority> grantedAuths = new ArrayList<>();
-                    grantedAuths.add(new SimpleGrantedAuthority("User"));
-                    return new UsernamePasswordAuthenticationToken(login, password, grantedAuths);
+                    grantedAuths.add(new SimpleGrantedAuthority(user.getRole()));
+                    //push user information as a Principal
+                    return new UsernamePasswordAuthenticationToken(user, password, grantedAuths);
                 } else {
                     return null;
                 }
