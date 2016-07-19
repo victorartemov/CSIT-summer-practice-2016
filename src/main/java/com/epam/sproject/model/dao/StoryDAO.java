@@ -1,8 +1,8 @@
-package model.dao;
+﻿package model.dao;
 
 /**
  * Created by Гога on 19.07.2016.
  */
-public interface StoryDAO {
+public interface StoryDAO extends DAO<Story>{
 
 }
