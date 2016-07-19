@@ -1,7 +1,6 @@
-package com.epam.sproject.restExample;
+package com.epam.sproject.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
@@ -10,8 +9,8 @@ import java.security.Principal;
  * Rest API Example
  * @author Vadim
  */
-@RestController
-public class RestAPI {
+@RestServiceController
+public class RestServiceController {
 
     //Simple Get User Information (It's need to recode!!!)
     @RequestMapping("/user")
