@@ -22,6 +22,14 @@ public class Fragment extends Item {
         this.childFragments = childFragments;
     }
 
+    public boolean isExtendable() {
+        return extendable;
+    }
+
+    public void setExtendable(boolean extendable) {
+        this.extendable = extendable;
+    }
+
     public User getAuthor() {
         return author;
     }
