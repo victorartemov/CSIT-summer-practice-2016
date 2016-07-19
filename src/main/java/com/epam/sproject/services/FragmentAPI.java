@@ -6,12 +6,12 @@ import java.util.Collection;
 
 public interface FragmentAPI {
 
-    Fragment getFragmentById(long fragmentId);
+    Fragment getFragmentById(Long fragmentId);
     Fragment getRootFragmentFromBestStory();
     Collection<Fragment> getAllRootFragments();
 
-    int increaseLikes(long fragmentId);
-    int decreaseLikes(long fragmentId); /// it's cancel, not dislike
+    int increaseLikes(Long fragmentId);
+    int decreaseLikes(Long fragmentId); /// it's cancel, not dislike
 
     void saveFragment(Fragment newFragment);
 }
