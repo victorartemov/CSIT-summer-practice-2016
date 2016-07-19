@@ -1,8 +1,6 @@
 package com.epam.sproject.configs;
 
-import com.epam.sproject.dao.UserDAO;
-import com.epam.sproject.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,11 +21,6 @@ import java.util.List;
 @Configuration
 public class LoginPassAuthConfig extends GlobalAuthenticationConfigurerAdapter {
 
-    /**
-     * Init storage
-     */
-    @Autowired
-    private UserDAO storage;
 
     @Override
     public void init(AuthenticationManagerBuilder auth) {
@@ -38,12 +31,12 @@ public class LoginPassAuthConfig extends GlobalAuthenticationConfigurerAdapter {
                 String login = authentication.getName();
                 String password = authentication.getCredentials().toString();
                 //check login/pass and try to get User information
-                final User user = storage.getUserByLoginPass(login, password);
-                if (user != null) {
+               // final User user = storage.getUserByLoginPass(login, password);
+                if (login.compareTo("user") == 0 && password.compareTo("pass") == 0) {
                     List<GrantedAuthority> grantedAuths = new ArrayList<>();
-                    grantedAuths.add(new SimpleGrantedAuthority(user.getRole()));
+                    grantedAuths.add(new SimpleGrantedAuthority("user"));
                     //push user information as a Principal
-                    return new UsernamePasswordAuthenticationToken(user, password, grantedAuths);
+                    return new UsernamePasswordAuthenticationToken(login, password, grantedAuths);
                 } else {
                     return null;
                 }
