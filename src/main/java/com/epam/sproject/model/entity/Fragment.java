@@ -12,6 +12,7 @@ public class Fragment extends Item {
     private String text;
     private Set<User> likes;
     private Set<Fragment> childFragments;
+    private boolean extendable;
 
     public Set<Fragment> getChildFragments() {
         return childFragments;
