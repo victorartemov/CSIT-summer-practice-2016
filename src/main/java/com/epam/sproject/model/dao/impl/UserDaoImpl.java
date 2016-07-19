@@ -11,14 +11,6 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDAO {
 
-    public User getUserById(Long id) throws IOException {
-        return null;
-    }
-
-    public User getUserByLogin(String login) throws IOException {
-        return null;
-    }
-
     public List<User> getAll() throws IOException {
         return null;
     }
@@ -37,5 +29,9 @@ public class UserDaoImpl implements UserDAO {
 
     public boolean create(User entity) throws IOException {
         return false;
+    }
+
+    public User getUserByLogin() {
+        return null;
     }
 }

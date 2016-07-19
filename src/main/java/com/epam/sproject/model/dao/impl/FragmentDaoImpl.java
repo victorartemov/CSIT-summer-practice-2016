@@ -11,10 +11,6 @@ import java.util.List;
  */
 public class FragmentDaoImpl implements FragmentDAO {
 
-    public Fragment getFragmentById(Long fragmentId) throws IOException {
-        return null;
-    }
-
     public List<Fragment> getAll() throws IOException {
         return null;
     }
