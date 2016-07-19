@@ -1,4 +1,4 @@
-package model.entity;
+package com.epam.sproject.model.entity;
 
 import java.util.Set;
 

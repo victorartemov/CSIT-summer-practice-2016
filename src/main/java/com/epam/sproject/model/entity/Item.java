@@ -1,4 +1,4 @@
-package model.entity;
+package com.epam.sproject.model.entity;
 
 /**
  * Created by Гога on 19.07.2016.

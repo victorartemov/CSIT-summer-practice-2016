@@ -1,7 +1,7 @@
-package model.dao.impl;
+package com.epam.sproject.model.dao.impl;
 
-import model.dao.FragmentDAO;
-import model.entity.Fragment;
+import com.epam.sproject.model.dao.FragmentDAO;
+import com.epam.sproject.model.entity.Fragment;
 
 import java.io.IOException;
 import java.util.List;

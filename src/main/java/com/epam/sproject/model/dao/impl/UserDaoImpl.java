@@ -1,7 +1,7 @@
-package model.dao.impl;
+package com.epam.sproject.model.dao.impl;
 
-import model.dao.UserDAO;
-import model.entity.User;
+import com.epam.sproject.model.dao.UserDAO;
+import com.epam.sproject.model.entity.User;
 
 import java.io.IOException;
 import java.util.List;

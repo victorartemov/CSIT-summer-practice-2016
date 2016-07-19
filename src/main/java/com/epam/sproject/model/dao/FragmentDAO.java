@@ -1,6 +1,6 @@
-package model.dao;
+package com.epam.sproject.model.dao;
 
-import model.entity.Fragment;
+import com.epam.sproject.model.entity.Fragment;
 
 /**
  * Created by Гога on 19.07.2016.

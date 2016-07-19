@@ -1,6 +1,6 @@
-package model.dao;
+package com.epam.sproject.model.dao;
 
-import model.entity.User;
+import com.epam.sproject.model.entity.User;
 
 /**
  * Created by Гога on 19.07.2016.

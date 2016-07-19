@@ -1,6 +1,6 @@
-package model.dao;
+package com.epam.sproject.model.dao;
 
-import model.entity.Item;
+import com.epam.sproject.model.entity.Item;
 
 import java.io.IOException;
 import java.util.List;
