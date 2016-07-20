@@ -15,7 +15,7 @@ public interface DAO<T extends Item> {
 
     public T update(T entity) throws IOException;
 
-    public boolean delete(Long id) throws IOException;
+    public boolean delete(T entity) throws IOException;
 
     public boolean create(T entity) throws IOException;
 }

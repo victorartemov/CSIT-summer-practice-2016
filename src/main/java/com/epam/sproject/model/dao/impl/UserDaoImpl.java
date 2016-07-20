@@ -11,27 +11,33 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDAO {
 
+    @Override
+    public User getUserByLogin() throws IOException {
+        return null;
+    }
+
+    @Override
     public List<User> getAll() throws IOException {
         return null;
     }
 
+    @Override
     public User getById(Long id) throws IOException {
         return null;
     }
 
+    @Override
     public User update(User entity) throws IOException {
         return null;
     }
 
-    public boolean delete(Long id) throws IOException {
+    @Override
+    public boolean delete(User entity) throws IOException {
         return false;
     }
 
+    @Override
     public boolean create(User entity) throws IOException {
         return false;
-    }
-
-    public User getUserByLogin() {
-        return null;
     }
 }

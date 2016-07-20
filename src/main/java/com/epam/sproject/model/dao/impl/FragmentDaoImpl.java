@@ -11,22 +11,27 @@ import java.util.List;
  */
 public class FragmentDaoImpl implements FragmentDAO {
 
+    @Override
     public List<Fragment> getAll() throws IOException {
         return null;
     }
 
+    @Override
     public Fragment getById(Long id) throws IOException {
         return null;
     }
 
+    @Override
     public Fragment update(Fragment entity) throws IOException {
         return null;
     }
 
-    public boolean delete(Long id) throws IOException {
+    @Override
+    public boolean delete(Fragment entity) throws IOException {
         return false;
     }
 
+    @Override
     public boolean create(Fragment entity) throws IOException {
         return false;
     }
