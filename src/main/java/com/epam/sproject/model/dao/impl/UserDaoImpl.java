@@ -10,9 +10,8 @@ import java.util.List;
  * Created by Гога on 19.07.2016.
  */
 public class UserDaoImpl implements UserDAO {
-
     @Override
-    public User getUserByLogin() throws IOException {
+    public User getUserByLogin(String login) throws IOException {
         return null;
     }
 
