@@ -22,8 +22,8 @@ public class FragmentDaoImpl implements FragmentDAO {
     }
 
     @Override
-    public Fragment update(Fragment entity) throws IOException {
-        return null;
+    public boolean update(Fragment entity) throws IOException {
+        return false;
     }
 
     @Override

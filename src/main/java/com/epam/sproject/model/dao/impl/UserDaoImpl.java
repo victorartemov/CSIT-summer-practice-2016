@@ -26,8 +26,8 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public User update(User entity) throws IOException {
-        return null;
+    public boolean update(User entity) throws IOException {
+        return false;
     }
 
     @Override
