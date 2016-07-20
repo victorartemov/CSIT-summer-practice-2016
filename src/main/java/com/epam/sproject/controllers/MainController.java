@@ -1,9 +1,17 @@
 package com.epam.sproject.controllers;
 
+import com.sun.deploy.net.HttpResponse;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 
 /**
@@ -11,6 +19,28 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class MainController {
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String redirect(HttpServletRequest request, HttpServletResponse response) {
+
+		Cookie[] allCookies = request.getCookies();
+
+		for (int i = 0; i < allCookies.length; i++) {
+			String name = allCookies[i].getName();
+			if (name.equalsIgnoreCase("JSESSIONID")) {
+				Cookie cookieToDelete = allCookies[i];
+				cookieToDelete.setValue("");
+				cookieToDelete.setMaxAge(0);
+				cookieToDelete.setVersion(0);
+				cookieToDelete.setPath("/");
+				response.addCookie(cookieToDelete);
+			}
+
+		}
+
+		return "login";
+
+	}
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET})
 	public ModelAndView welcomePage() {

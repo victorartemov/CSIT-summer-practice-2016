@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-@Service
+//@Service
 public class StoryServiceImpl implements StoryService {
-    @Autowired
+    //@Autowired
     StoryDAO storyDao;
 
-    @Transactional
+    //@Transactional
     public Story getStoryById(Long storyId) throws IOException {
 	Story story = storyDao.getById(storyId);
 
@@ -28,7 +28,7 @@ public class StoryServiceImpl implements StoryService {
 	}
     }
 
-    @Transactional
+    //@Transactional
     public Story getBestStory() throws IOException {
         List<Story> stories = storyDao.getAll();
 
@@ -51,7 +51,7 @@ public class StoryServiceImpl implements StoryService {
 	return bestStory;
     }
 
-    @Transactional
+   // @Transactional
     public Collection<Story> getAllStories() throws IOException {
         Collection<Story> stories = storyDao.getAll();
 

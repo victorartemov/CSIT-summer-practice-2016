@@ -13,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.util.Set;
 
-@Service
+//@Service
 public class FragmentServiceImpl implements FragmentService {
-    @Autowired
-    FragmentDAO fragmentDao;
-    @Autowired
-    UserDAO userDao;
+   // @Autowired
+    private FragmentDAO fragmentDao;
+   // @Autowired
+   private UserDAO userDao;
     
     @Transactional
     public Fragment getFragmentById(Long fragmentId) throws IOException {

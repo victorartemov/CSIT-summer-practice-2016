@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 
-@Service
+//@Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+   // @Autowired
     UserDAO userDAO;
 
-    @Transactional
+   // @Transactional
     public User getUserById(Long userId) throws IOException {
 	User user = userDAO.getById(userId);
 
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	}
     }
     
-    @Transactional
+  //  @Transactional
     public User getUserBylogin(String login) throws IOException {
         User user = userDAO.getUserByLogin(login);
 	

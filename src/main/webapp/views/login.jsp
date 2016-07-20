@@ -25,6 +25,21 @@
 </form>
 
 
+<div>
+    <br>Login with Social Networks:</br>
+</div>
+
+<form action="/login/facebook" method="get">
+    <input type="submit" value="Facebook"/>
+</form>
+
+<form action="/login/github" method="get">
+   <input type="submit" value="GitHub"/>
+</form>
+
+<form action="/login/vk" method="get">
+    <input type="submit" value="vk.com"/>
+</form>
 
 </body>
 </html>
