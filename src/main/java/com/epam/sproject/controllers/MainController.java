@@ -1,9 +1,7 @@
 package com.epam.sproject.controllers;
 
-import com.sun.deploy.net.HttpResponse;
-import org.springframework.http.HttpRequest;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +22,7 @@ public class MainController {
 	public String redirect(HttpServletRequest request, HttpServletResponse response) {
 
 		Cookie[] allCookies = request.getCookies();
-
+		git init
 		for (int i = 0; i < allCookies.length; i++) {
 			String name = allCookies[i].getName();
 			if (name.equalsIgnoreCase("JSESSIONID")) {
