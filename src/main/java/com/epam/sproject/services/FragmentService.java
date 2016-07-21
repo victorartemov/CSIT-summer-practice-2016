@@ -10,4 +10,5 @@ public interface FragmentService {
     void saveFragment(Fragment newFragment) throws IOException;
 
     int addLike(Long fragmentId, Long userId) throws IOException;
+    int removeLike(Long fragmentId, Long userId) throws IOException;
 }

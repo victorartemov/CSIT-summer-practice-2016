@@ -44,7 +44,11 @@ public class FragmentServiceImpl implements FragmentService {
 	User user = userDao.getById(userId);
 	
         Set<User> likes = fragment.getLikes();
-	likes.add(user);
+
+	if (!likes.contains(user)) {
+	    likes.add(user);
+	}
+	
 	fragment.setLikes(likes);
 	
         if (!fragmentDao.update(fragment)) {
@@ -52,5 +56,23 @@ public class FragmentServiceImpl implements FragmentService {
 	}
 	
         return likes.size();
+    }
+
+    @Transactional
+    public int removeLike(Long fragmentId, Long userId) throws IOException {
+        Fragment fragment = fragmentDao.getById(fragmentId);
+	User user = userDao.getById(userId);
+
+	Set<User> likes = fragment.getLikes();
+
+	if (likes.contains(user)) {
+	    likes.remove(user);
+	}
+
+	if (!fragmentDao.update(fragment)) {
+	    throw new IllegalArgumentException();
+	}
+
+	return likes.size();
     }
 }
