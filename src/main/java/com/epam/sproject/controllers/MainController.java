@@ -22,7 +22,7 @@ public class MainController {
 	public String redirect(HttpServletRequest request, HttpServletResponse response) {
 
 		Cookie[] allCookies = request.getCookies();
-		git init
+
 		for (int i = 0; i < allCookies.length; i++) {
 			String name = allCookies[i].getName();
 			if (name.equalsIgnoreCase("JSESSIONID")) {
