@@ -1,7 +1,17 @@
 package com.epam.sproject.controllers;
 
 
+import com.epam.sproject.model.entity.Fragment;
+import com.epam.sproject.model.entity.Story;
+import com.epam.sproject.services.FragmentService;
+import com.epam.sproject.services.StoryService;
+import com.epam.sproject.services.UserService;
+import com.epam.sproject.services.impl.FragmentServiceImpl;
+import com.epam.sproject.services.impl.StoryServiceImpl;
+import com.epam.sproject.services.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.security.Principal;
 
 
@@ -17,6 +28,16 @@ import java.security.Principal;
  */
 @Controller
 public class MainController {
+
+	//Constructors are temporally here
+	//@Autowired
+	private FragmentService fragmentService=new FragmentServiceImpl();
+
+	//@Autowired
+	private StoryService storyService=new StoryServiceImpl();
+
+	//@Autowired
+	private UserService userService=new UserServiceImpl();
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String redirect(HttpServletRequest request, HttpServletResponse response) {
@@ -35,17 +56,31 @@ public class MainController {
 			}
 
 		}
-
 		return "login";
-
 	}
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET})
-	public ModelAndView welcomePage() {
-		ModelAndView model = new ModelAndView();
-		model.addObject("message", "Hello World!");
-		model.setViewName("index");
-		return model;
+	public String welcomePage(ModelMap model) throws IOException {
+		Story bestStory=new Story();
+		//storyService.getBestStory();
+		model.addAttribute("bestStory", bestStory);
+		return "index";
+	}
+
+	@RequestMapping(value="/index/singleFragment", method={RequestMethod.GET})
+	public String getSingleFragment(ModelMap model) throws IOException {
+		long chosenFragmentId=(long)model.get("chosenFragmentId");
+		Fragment chosenFragment=new Fragment();
+		//fragmentService.getFragmentById(chosenFragmentId);
+		model.addAttribute("chosenFragment", chosenFragment);
+		return "redirect:index";
+	}
+
+	@RequestMapping(value="/index/saveFragment", method={RequestMethod.POST})
+	public String saveFragment(ModelMap model) throws IOException {
+		Fragment newFragment=(Fragment)model.get("newFragment");
+		fragmentService.saveFragment(newFragment);
+		return "redirect:index";
 	}
 
 	@RequestMapping(value = "/protected**", method = RequestMethod.GET)
@@ -68,8 +103,4 @@ public class MainController {
 		return model;
 
 	}
-
-
-
-
 }
