@@ -9,18 +9,16 @@ import com.epam.sproject.services.UserService;
 import com.epam.sproject.services.impl.FragmentServiceImpl;
 import com.epam.sproject.services.impl.StoryServiceImpl;
 import com.epam.sproject.services.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.Principal;
+import java.util.Collection;
 
 
 /**
@@ -30,6 +28,7 @@ import java.security.Principal;
 public class MainController {
 
 	//Constructors are temporally here
+	//Save and cancel in Editor save fragment :)
 	//@Autowired
 	private FragmentService fragmentService=new FragmentServiceImpl();
 
@@ -54,7 +53,6 @@ public class MainController {
 				cookieToDelete.setPath("/");
 				response.addCookie(cookieToDelete);
 			}
-
 		}
 		return "login";
 	}
@@ -67,40 +65,32 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping(value="/index/singleFragment", method={RequestMethod.GET})
+	@RequestMapping(value="/collections", method={RequestMethod.GET})
+	public String getCollections(ModelMap model) throws IOException {
+		Collection<Story> listStories=storyService.getAllStories();
+		model.addAttribute("collection",listStories);
+		return "collections";
+	}
+
+	@RequestMapping(value="/singleFragment", method={RequestMethod.GET})
 	public String getSingleFragment(ModelMap model) throws IOException {
 		long chosenFragmentId=(long)model.get("chosenFragmentId");
 		Fragment chosenFragment=new Fragment();
 		//fragmentService.getFragmentById(chosenFragmentId);
 		model.addAttribute("chosenFragment", chosenFragment);
-		return "redirect:index";
+		return "redirect:/";
 	}
 
-	@RequestMapping(value="/index/saveFragment", method={RequestMethod.POST})
-	public String saveFragment(ModelMap model) throws IOException {
-		Fragment newFragment=(Fragment)model.get("newFragment");
-		fragmentService.saveFragment(newFragment);
-		return "redirect:index";
+	@RequestMapping(value="/editor", method={RequestMethod.GET})
+	public String getEditor(ModelMap model) throws IOException {
+		Fragment fragment=new Fragment();
+		model.addAttribute("fragment", fragment);
+		return "editor";
 	}
 
-	@RequestMapping(value = "/protected**", method = RequestMethod.GET)
-	public ModelAndView protectedPage() {
-
-		ModelAndView model = new ModelAndView();
-		model.addObject("message", "Page One!");
-		model.setViewName("pageview");
-		return model;
-
-	}
-
-	@RequestMapping(value = "/confidential**", method = RequestMethod.GET)
-	public ModelAndView adminPage() {
-
-		ModelAndView model = new ModelAndView();
-		model.addObject("message", "Page Two!");
-		model.setViewName("pageview");
-
-		return model;
-
+	@RequestMapping(value="/editor", method={RequestMethod.POST})
+	public String saveFragment(Fragment fragment, ModelMap model) throws IOException {
+		//fragmentService.saveFragment(fragment);
+		return "index";
 	}
 }

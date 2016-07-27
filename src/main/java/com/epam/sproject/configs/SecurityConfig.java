@@ -30,9 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		//provide access for all to use "/", "/login**", "/webjars/**"
+		//URLes have access temporary: /editor, /saveFragment, /show
 		http.antMatcher("/**")
 				.authorizeRequests()
-				.antMatchers( "/", "/login**", "/webjars/**").permitAll()
+				.antMatchers( "/", "/login**", "/webjars/**", "/static/js/angularJS.js", "/editor", "/saveFragment", "/show").permitAll()
 				.anyRequest().authenticated()
 				.and().addFilterAfter(socialNetworksAuth.oAuth2ClientContextFilter(), AbstractPreAuthenticatedProcessingFilter.class)
 				.addFilterBefore(socialNetworksAuth.ssoFilters(), BasicAuthenticationFilter.class);
