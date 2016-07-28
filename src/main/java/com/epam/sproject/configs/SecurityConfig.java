@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//URLes have access temporary: /editor, /saveFragment, /show
 		http.antMatcher("/**")
 				.authorizeRequests()
-				.antMatchers( "/", "/login**", "/webjars/**", "/static/js/angularJS.js", "/editor", "/saveFragment", "/show").permitAll()
+				.antMatchers( "/", "/login**", "/webjars/**", "/static/js/angularJS.js", "/show").permitAll()
 				.anyRequest().authenticated()
 				.and().addFilterAfter(socialNetworksAuth.oAuth2ClientContextFilter(), AbstractPreAuthenticatedProcessingFilter.class)
 				.addFilterBefore(socialNetworksAuth.ssoFilters(), BasicAuthenticationFilter.class);

@@ -19,6 +19,7 @@ import java.util.List;
 @EnableWebMvc
 public class MVCConfig extends WebMvcConfigurerAdapter {
 
+
     /**
      * Controllers registration (optional to others controllers)
      */
@@ -45,5 +46,8 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/*");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }
