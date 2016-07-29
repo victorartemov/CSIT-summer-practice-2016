@@ -10,10 +10,12 @@
 		<title>Hello World</title>
 	</head>
 	<body ng-app="app">
-		<jsp:include page="navigation.jsp"/>
-		<section>
-			<h3>Message : ${fragment.getTitle()} ${fragment.getText()}</h3>
-		</section>
-		<div>Go to page <a href="editor">EDITOR</a>.</div>
+	<div class="container">
+			<jsp:include page="navigation.jsp"/>
+			<section>
+				<h3>Message : ${fragment.getTitle()} ${fragment.getText()}</h3>
+			</section>
+			<div>Go to page <a href="editor">EDITOR</a>.</div>
+	</div>
 	</body>
 </html>

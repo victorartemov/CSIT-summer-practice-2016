@@ -16,20 +16,21 @@
 </head>
 
 <body ng-app="app" ng-controller="home as home">
-    <header> <span> <button class="btn btn-primary">HOME</button></span>
-             <span> <button class="btn btn-primary">STORY COLLECTION</button></span>
-             <span> <button class="btn btn-primary">MY PROFILE</button></span>
+    <nav class="btn-group btn-group-justified">
+         <span class="btn-group"> <button class="btn btn-primary">HOME</button></span>
+         <span class="btn-group"> <button class="btn btn-primary">STORY COLLECTION</button></span>
+         <span class="btn-group"> <button class="btn btn-primary">MY PROFILE</button></span>
 
-             <span ng-show="!home.authenticated">
-                    <a href="/login">
-                        <button class="btn btn-primary">LOG IN</button>
-                    </a>
-             </span>
+         <span class="btn-group" ng-show="!home.authenticated">
+                <a href="/login"  class="btn btn-primary">
+                    LOG IN
+                </a>
+         </span>
 
-             <span ng-show="home.authenticated">
-                    <button ng-click="home.logout()" class="btn btn-primary">LOG OUT</button>
-             </span>
-    </header>
+         <span class="btn-group" ng-show="home.authenticated">
+                <button ng-click="home.logout()" class="btn btn-primary">LOG OUT</button>
+         </span>
+    </nav>
 
     <div ng-show="home.authenticated">
         Logged in as: <span ng-bind="home.user"></span>
