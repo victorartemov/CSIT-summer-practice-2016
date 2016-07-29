@@ -38,24 +38,6 @@ public class MainController {
 	//@Autowired
 	private UserService userService=new UserServiceImpl();
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String redirect(HttpServletRequest request, HttpServletResponse response) {
-
-		Cookie[] allCookies = request.getCookies();
-
-		for (int i = 0; i < allCookies.length; i++) {
-			String name = allCookies[i].getName();
-			if (name.equalsIgnoreCase("JSESSIONID")) {
-				Cookie cookieToDelete = allCookies[i];
-				cookieToDelete.setValue("");
-				cookieToDelete.setMaxAge(0);
-				cookieToDelete.setVersion(0);
-				cookieToDelete.setPath("/");
-				response.addCookie(cookieToDelete);
-			}
-		}
-		return "login";
-	}
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET})
 	public String welcomePage(ModelMap model) throws IOException {
