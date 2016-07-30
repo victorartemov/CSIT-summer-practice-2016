@@ -28,7 +28,6 @@ import java.util.Collection;
 public class MainController {
 
 	//Constructors are temporally here
-	//Save and cancel in Editor save fragment :)
 	//@Autowired
 	private FragmentService fragmentService=new FragmentServiceImpl();
 
@@ -71,8 +70,29 @@ public class MainController {
 	}
 
 	@RequestMapping(value="/editor", method={RequestMethod.POST})
-	public String saveFragment(Fragment fragment, ModelMap model) throws IOException {
-		//fragmentService.saveFragment(fragment);
-		return "index";
+	public String saveFragment(HttpServletRequest request, Fragment fragment, ModelMap model) throws IOException {
+		String titleChild1=request.getParameter("text1");
+		String titleChild2=request.getParameter("text2");
+		String titleChild3=request.getParameter("text3");
+
+		Fragment child1=new Fragment();
+		Fragment child2=new Fragment();
+		Fragment child3=new Fragment();
+
+		child1.setParent(fragment);
+		child2.setParent(fragment);
+		child3.setParent(fragment);
+
+		child1.setTitle(titleChild1);
+		child2.setTitle(titleChild2);
+		child3.setTitle(titleChild3);
+
+		/*Set<Fragment>children=new TreeSet<Fragment>();
+		children.add(child1);
+		children.add(child2);
+		children.add(child3);
+		fragment.setChildFragments(children);
+		fragmentService.saveFragment(fragment);*/
+		return "redirect:/";
 	}
 }
