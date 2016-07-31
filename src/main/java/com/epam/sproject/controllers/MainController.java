@@ -18,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -46,11 +47,24 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping(value="/collections", method={RequestMethod.GET})
+	@RequestMapping(value="/collection", method={RequestMethod.GET})
 	public String getCollections(ModelMap model) throws IOException {
-		Collection<Story> listStories=storyService.getAllStories();
+		//Collection<Story> listStories=storyService.getAllStories();
+		Collection<Story> listStories=new ArrayList<Story>();
+		Story a=new Story();
+		Story b=new Story();
+		Story c=new Story();
+
+		a.setTitle("A");
+		b.setTitle("B");
+		c.setTitle("C");
+
+		listStories.add(a);
+		listStories.add(b);
+		listStories.add(c);
+
 		model.addAttribute("collection",listStories);
-		return "collections";
+		return "collection";
 	}
 
 	@RequestMapping(value="/singleFragment", method={RequestMethod.GET})
