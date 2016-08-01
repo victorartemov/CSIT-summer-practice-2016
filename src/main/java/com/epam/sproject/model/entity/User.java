@@ -1,15 +1,39 @@
 package com.epam.sproject.model.entity;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Гога on 19.07.2016.
  */
+@Entity
+@Table(name = "user")
 public class User extends Item {
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
     private String role;
+
+    @Column(name = "fullName")
     private String fullName;
+
+    @Column(name = "rating")
     private Long rating;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+    private Set<Fragment> fragments = new HashSet<Fragment>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "commentAuthor")
+    private Set<Comment> comments = new HashSet<Comment>();
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "Likes")
+    private Set<Fragment> likedFragments = new HashSet<Fragment>();
     public String getLogin() {
         return login;
     }
@@ -48,5 +72,43 @@ public class User extends Item {
 
     public void setRating(Long rating) {
         this.rating = rating;
+    }
+
+    public Set<Fragment> getFragments() {
+        return fragments;
+    }
+
+    public void setFragments(Set<Fragment> fragments) {
+        this.fragments = fragments;
+    }
+
+    public Set<Fragment> getLikedFragments() {
+        return likedFragments;
+    }
+
+    public void setLikedFragments(Set<Fragment> likedFragments) {
+        this.likedFragments = likedFragments;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", rating=" + rating +
+                ", fragments=" + fragments +
+                ", comments=" + comments +
+                ", likedFragments=" + likedFragments +
+                '}';
     }
 }

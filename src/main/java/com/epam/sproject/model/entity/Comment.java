@@ -1,11 +1,23 @@
 package com.epam.sproject.model.entity;
 
+import javax.persistence.*;
+
 /**
  * Created by Гога on 19.07.2016.
  */
+@Entity
+@Table(name = "comment")
 public class Comment extends Item {
-    private User author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private User commentAuthor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fragment_id")
     private Fragment fragment;
+
+    @Column(name = "text")
     private String text;
 
     public Fragment getFragment() {
@@ -26,10 +38,19 @@ public class Comment extends Item {
 
     public User getAuthor() {
 
-        return author;
+        return commentAuthor;
     }
 
     public void setAuthor(User author) {
-        this.author = author;
+        this.commentAuthor = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentAuthor=" + commentAuthor +
+                ", fragment=" + fragment +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
