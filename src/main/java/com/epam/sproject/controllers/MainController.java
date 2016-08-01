@@ -67,13 +67,13 @@ public class MainController {
 		return "collection";
 	}
 
-	@RequestMapping(value="/singleFragment", method={RequestMethod.GET})
+	@RequestMapping(value="/singleblock", method={RequestMethod.GET})
 	public String getSingleFragment(ModelMap model) throws IOException {
-		long chosenFragmentId=(long)model.get("chosenFragmentId");
+		//long chosenFragmentId=(long)model.get("chosenFragmentId");
 		Fragment chosenFragment=new Fragment();
 		//fragmentService.getFragmentById(chosenFragmentId);
 		model.addAttribute("chosenFragment", chosenFragment);
-		return "redirect:/";
+		return "singleblock";
 	}
 
 	@RequestMapping(value="/editor", method={RequestMethod.GET})
