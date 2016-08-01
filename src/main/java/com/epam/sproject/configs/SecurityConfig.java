@@ -2,6 +2,7 @@ package com.epam.sproject.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -33,7 +34,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//URLes have access temporary: /editor, /saveFragment, /show
 		http.antMatcher("/**")
 				.authorizeRequests()
-				.antMatchers( "/", "/login**", "/signup**","/webjars/**", "/static/js/angularJS.js", "/show").permitAll()
+				.antMatchers( "/"
+						    , "/login**"
+						    , "/views/auth/**"
+						    , "/signup**"
+						    , "/webjars/**"
+						    , "/static/js/**"
+						    , "/show").permitAll()
 				.anyRequest().authenticated()
 				.and().addFilterAfter(socialNetworksAuth.oAuth2ClientContextFilter(), AbstractPreAuthenticatedProcessingFilter.class)
 				.addFilterBefore(socialNetworksAuth.ssoFilters(), BasicAuthenticationFilter.class);

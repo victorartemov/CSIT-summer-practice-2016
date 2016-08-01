@@ -26,8 +26,11 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/signup").setViewName("signup");
+        registry.addViewController("/login").setViewName("/auth/login");
+        registry.addViewController("/signup").setViewName("/auth/signup");
+
+
+        registry.addViewController("/loginForm").setViewName("/auth/loginForm");
     }
 
 
@@ -50,5 +53,6 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/*");
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+
     }
 }

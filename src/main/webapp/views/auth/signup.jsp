@@ -1,23 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html>
-<head>
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <title>Spring Security Example </title>
-</head>
-
-<body>
-<div >
-    ${param.error}
-</div>
-<div >
-    ${param.logout}
-</div>
-
-<p>&nbsp;</p>
-<p></p>
 
 <div class="container">
     <div class="panel panel-warning">
@@ -48,7 +29,7 @@
             <p></p>
 
             <div >
-                <a href="/login">Already Have an Account? - Sign In</a>
+                <a href="/login#/">Already Have an Account? - Sign In</a>
             </div>
         </div>
 
@@ -57,5 +38,3 @@
 
 
 </div>
-</body>
-</html>
