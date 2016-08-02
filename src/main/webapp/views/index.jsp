@@ -3,19 +3,27 @@
 
 <html>
 	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width" />
 		<base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script src="<c:url value='/static/js/angularJS.js'/>"></script>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-route.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-cookies.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/angularJS.js"></script>
 
-		<title>Hello World</title>
+		<title>Live Stories</title>
 	</head>
-	<body ng-app="app">
+	<body ng-app="app" ng-controller="home as home">
 	<div class="container">
-			<jsp:include page="navigation.jsp"/>
-			<section>
-				<h3>Message : ${fragment.getTitle()} ${fragment.getText()}</h3>
-			</section>
-			<div>Go to page <a href="editor">EDITOR</a>.</div>
+		<jsp:include page="navigation.jsp"/>
+
+
+		<div ng-view class="container"></div>
+
 	</div>
 	</body>
 </html>

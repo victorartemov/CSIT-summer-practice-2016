@@ -1,25 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width" />
-    <base href="/" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/angularJS.js"></script>
-
-</head>
-
-<body ng-app="app" ng-controller="home as home">
+<div>
     <nav class="btn-group btn-group-justified">
-         <span class="btn-group"> <button class="btn btn-primary">HOME</button></span>
-         <span class="btn-group"> <button class="btn btn-primary">STORY COLLECTION</button></span>
-         <span class="btn-group"> <button class="btn btn-primary">MY PROFILE</button></span>
+         <span class="btn-group">
+            <a href="#/" class="btn btn-primary">
+                HOME
+            </a>
+         </span>
+         <span class="btn-group">
+            <a href="#/collection" class="btn btn-primary">
+                STORY COLLECTION
+            </a>
+         </span>
+         <span class="btn-group">
+            <a href="#/profile" class="btn btn-primary">
+                MY PROFILE
+            </a>
+         </span>
 
          <span class="btn-group" ng-show="!home.authenticated">
                 <a href="/login"  class="btn btn-primary">
@@ -37,5 +34,4 @@
     </div>
 
 
-</body>
-</html>
+</div>
