@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.Collection;
 
 public interface StoryService {
-    Story getStoryById(Long storyId) throws IOException;
+    Story getStoryById(Long storyId);
 
-    Story getBestStory() throws IOException;
+    Story getBestStory();
 
-    Collection<Story> getAllStories() throws IOException;
+    Collection<Story> getAllStories();
 }

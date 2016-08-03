@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						    , "/login**"
 						    //, "/views/auth/**"
 						    , "/views/**"
+						    , "/api/**"
 						    , "/signup**"
 						    , "/webjars/**"
 						    , "/static/js/**"

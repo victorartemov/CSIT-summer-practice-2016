@@ -16,8 +16,6 @@ angular.module("app", ['ngRoute'])
             otherwise({
                 redirectTo: '/'
             });
-
-            
             
         }).controller("home", function($http, $location) {
     var self = this;
@@ -33,6 +31,15 @@ angular.module("app", ['ngRoute'])
         self.user = "N/A";
         self.authenticated = false;
     });
+
+
+    $http.get("/api/getFamousStory").success(function(data) {
+        self.famousStory = data;
+    }).error(function() {
+        self.famousStory = "{\"error\":\"400\"}";
+
+    });
+
     
     self.logout = function() {
         $http.post('logout', {}).success(function() {
@@ -43,4 +50,17 @@ angular.module("app", ['ngRoute'])
             self.authenticated = false;
         });
     };
+
+
+
+    $http.get("/api/getFamousStory").success(function(data) {
+        self.famousStory = data;
+    }).error(function() {
+        self.famousStory = "{\"error\":\"400\"}";
+
+    });
+
+
+
+
 });
