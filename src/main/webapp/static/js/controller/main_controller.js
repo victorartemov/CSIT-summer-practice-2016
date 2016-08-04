@@ -1,26 +1,5 @@
-/**
- * Created by Aleksandr on 7/27/2016.
- */
-angular.module("app", ['ngRoute'])
-    .config(
-        function($httpProvider, $routeProvider) {
-            $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-            $routeProvider.when('/', {
-                templateUrl : '/views/home.jsp'
-            }).when('/collection', {
-                templateUrl : '/views/collection.jsp'
-            }).when('/profile', {
-                templateUrl : '/views/profile.jsp'
-            }).when('/editor', {
-                templateUrl : '/views/editor.jsp'
-            }).
-
-            otherwise({
-                redirectTo: '/'
-            });
-            
-        }).controller("home", function($http, $location, $scope ) {
+angular.module('app').controller("home", function($http, $location, $scope ) {
 
     var self = this;
 
@@ -50,6 +29,12 @@ angular.module("app", ['ngRoute'])
     }).error(function() {
         self.famousStors = "{\"error\":\"400\"}";
 
+    });
+
+    $http.get("/api/getAllStory").success(function(data) {
+        self.stories=data;
+    }).error(function() {
+        self.stories = [];
     });
 
     self.addFragment = function (data, index) {
@@ -99,10 +84,4 @@ angular.module("app", ['ngRoute'])
             self.authenticated = false;
         });
     };
-
-
-
-
-
-
 });

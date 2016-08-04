@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
     <div>
@@ -10,15 +9,15 @@
             <tr>
                 <th>#</th>
                 <th>Name Story</th>
+                <th>Rating</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${collection}" var="story" varStatus="state">
-                <tr>
-                    <td> ${state.index+1} </td>
-                    <td> ${story.getTitle()}</td>
-                </tr>
-            </c:forEach>
+            <tr ng-repeat="story in home.stories">
+                <td class="m-x-auto text-justify"> {{$index+1}} </td>
+                <td class="m-x-auto text-justify"> {{story.title}}</td>
+                <td class="m-x-auto text-justify"> {{story.rating}}</td>
+            </tr>
         </tbody>
     </table>
     <div>

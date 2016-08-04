@@ -13,7 +13,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-route.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/loginActivity.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/module/loginActivity.js"></script>
     <title>Login page</title>
 </head>
 
