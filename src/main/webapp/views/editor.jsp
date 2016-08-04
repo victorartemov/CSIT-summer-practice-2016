@@ -1,11 +1,11 @@
- <div class="container">
+ <div class="container" ng-show="home.authenticated">
         <div class="panel panel-success">
 
             <div class="panel-body center-block" >
 
                 <p>&nbsp;</p>
                 <p></p>
-                <div class="container">
+                <div >
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label for="title" class="col-md-3 control-label">Title:</label>
@@ -19,6 +19,8 @@
                             <textarea class="form-control" rows="4" placeholder="Enter text of fragment"></textarea>
                         </div>
                     </div>
+
+                    <!--
                     <div class="form-group">
                         <label for="sequel1" class="col-md-3 control-label">Sequel 1:</label>
                         <div class="col-md-6">
@@ -37,11 +39,14 @@
                             <input type="text" class="form-control" placeholder="Enter title sequel of fragment">
                         </div>
                     </div>
-                    <div class="col-md-4 col-md-offset-3">
-                        <button type="button" class="btn btn-success">Save</button>
-                    </div>
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-info">Cancel</button>
+                    -->
+                    <div class="center-block">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success">Save</button>
+                        </div>
+                        <div class="btn-group">
+                            <a href="#/home" type="button" class="btn btn-info">Cancel</a>
+                        </div>
                     </div>
                 </form>
 
@@ -50,4 +55,8 @@
                 </div>
             </div>
         </div>
+</div>
+
+<div class="container" ng-show="!home.authenticated">
+ You must log in to see your profile
 </div>

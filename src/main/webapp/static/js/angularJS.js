@@ -12,12 +12,16 @@ angular.module("app", ['ngRoute'])
                 templateUrl : '/views/collection.jsp'
             }).when('/profile', {
                 templateUrl : '/views/profile.jsp'
+            }).when('/editor', {
+                templateUrl : '/views/editor.jsp'
             }).
+
             otherwise({
                 redirectTo: '/'
             });
             
         }).controller("home", function($http, $location) {
+
     var self = this;
     $http.get("/user").success(function(data) {
         if (data.name) {
@@ -35,12 +39,25 @@ angular.module("app", ['ngRoute'])
 
     $http.get("/api/getFamousStory").success(function(data) {
         self.famousStory = data;
+        self.famousStoryFragments = [data.rootFragment];
     }).error(function() {
-        self.famousStory = "{\"error\":\"400\"}";
+        self.famousStors = "{\"error\":\"400\"}";
 
     });
 
-    
+    self.addFragment = function (data, index) {
+        this.famousStoryFragments.splice(index + 1, Number.MAX_VALUE ,data);
+    };
+
+
+    self.safeFragment = function (data) {
+        this.famousStoryFragments.push(data);
+    };
+
+    this.btnsStyle = [ 'btn-danger', 'btn-primary', 'btn-warning'];
+    self.randomBtnStyle = function () {
+        return this.btnsStyle[Math.floor(Math.random() * this.btnsStyle.length)];
+    };
     self.logout = function() {
         $http.post('logout', {}).success(function() {
             self.authenticated = false;
@@ -52,13 +69,6 @@ angular.module("app", ['ngRoute'])
     };
 
 
-
-    $http.get("/api/getFamousStory").success(function(data) {
-        self.famousStory = data;
-    }).error(function() {
-        self.famousStory = "{\"error\":\"400\"}";
-
-    });
 
 
 

@@ -4,35 +4,32 @@
     <h3>{{home.famousStory.title}}</h3>
 </section>
 
-<div class="panel panel-info">
+<div class="panel panel-info" ng-repeat="fragment in home.famousStoryFragments"  ng-init="parentIndex = $index" >
 
     <div class="panel-heading">
-        <h4>{{home.famousStory.rootFragment.title}}</h4>
+        <h4>{{fragment.title}}</h4>
     </div>
 
     <p>&nbsp;</p>
 
 
-    <div class="col-md-5 text-justify">
-        {{home.famousStory.rootFragment.text}}
+    <div class="m-x-auto text-justify" style="padding-right: 2%; padding-left: 2%;" >
+        {{fragment.text}}
     </div>
 
     <div class="btn pull-right">
-        <button class="btn btn-default"> Likes {{home.famousStory.rootFragment.likes.length}}</button>
+        <button class="btn btn-default"> Likes {{fragment.likes.length}}</button>
 
     </div>
     <p>&nbsp;</p>
 
 
     <div class="text-center">
-         <span class="btn-group">
-             <button class="btn btn-danger"> Child 1 </button>
+         <span  ng-repeat="child in fragment.childFragments" >
+             <button ng-click="home.addFragment(child, $parent.$index)" class="btn {{home.randomBtnStyle()}}"> {{child.title}}</button>
          </span>
-         <span class="btn-group">
-             <button class="btn btn-warning"> Child 2 </button>
-         </span>
-         <span class="btn-group">
-             <button class="btn btn-primary"> Child 3 </button>
+         <span  ng-show="fragment.childFragments.length <= 2" >
+             <a href="#/editor" class="btn {{home.randomBtnStyle()}}"> Add new fragment</a>
          </span>
 
     </div>
@@ -40,6 +37,3 @@
     <p>&nbsp;</p>
 
 </div>
-
-
-<div>Go to page <a href="editor">EDITOR</a>.</div>
