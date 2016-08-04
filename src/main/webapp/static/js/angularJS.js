@@ -20,9 +20,12 @@ angular.module("app", ['ngRoute'])
                 redirectTo: '/'
             });
             
-        }).controller("home", function($http, $location) {
+        }).controller("home", function($http, $location, $scope ) {
 
     var self = this;
+
+    $scope.location = $location;
+
     $http.get("/user").success(function(data) {
         if (data.name) {
             self.user = data.name;
@@ -37,9 +40,13 @@ angular.module("app", ['ngRoute'])
     });
 
 
+
+    ///////////////////////////////////////////////////////////////////////////
     $http.get("/api/getFamousStory").success(function(data) {
         self.famousStory = data;
         self.famousStoryFragments = [data.rootFragment];
+        console.log("get")
+
     }).error(function() {
         self.famousStors = "{\"error\":\"400\"}";
 
@@ -50,14 +57,39 @@ angular.module("app", ['ngRoute'])
     };
 
 
-    self.safeFragment = function (data) {
-        this.famousStoryFragments.push(data);
+
+    $scope.btnsStyle = [ 'btn-danger', 'btn-primary', 'btn-warning', ''];
+    self.randomBtnStyle = function () {
+        return $scope.btnsStyle[Math.floor(Math.random() * ($scope.btnsStyle.length-1))];
     };
 
-    this.btnsStyle = [ 'btn-danger', 'btn-primary', 'btn-warning'];
-    self.randomBtnStyle = function () {
-        return this.btnsStyle[Math.floor(Math.random() * this.btnsStyle.length)];
+
+
+    $scope.saveFragment = function (index) {
+        // use $.param jQuery function to serialize data from JSON
+        var data = {
+            title: self.title,
+            text: self.text
+        };
+
+
+
+        $http.post('/api/addChildFragment', data)
+            .success(function (data) {
+                self.response = data;
+                self.addFragment(data, index);
+                console.log("post")
+                $location.path("/");
+
+            })
+            .error(function (data) {
+                self.response = "{\"error\":\"400\"}";
+            });
+
+
+
     };
+    //////////////////////////////////////////////////////////////////////////////////
     self.logout = function() {
         $http.post('logout', {}).success(function() {
             self.authenticated = false;

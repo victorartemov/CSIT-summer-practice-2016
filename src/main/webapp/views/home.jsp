@@ -29,11 +29,9 @@
              <button ng-click="home.addFragment(child, $parent.$index)" class="btn {{home.randomBtnStyle()}}"> {{child.title}}</button>
          </span>
          <span  ng-show="fragment.childFragments.length <= 2" >
-             <a href="#/editor" class="btn {{home.randomBtnStyle()}}"> Add new fragment</a>
+             <a href="#/editor?index={{parentIndex}}" class="btn {{home.randomBtnStyle()}}"> Add new fragment</a>
          </span>
-
     </div>
-
     <p>&nbsp;</p>
 
 </div>

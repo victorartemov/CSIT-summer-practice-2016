@@ -1,13 +1,13 @@
 package com.epam.sproject.controllers;
 
+import com.epam.sproject.model.entity.Fragment;
 import com.epam.sproject.model.entity.Story;
 import com.epam.sproject.services.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashSet;
 
 
 /**
@@ -30,5 +30,17 @@ public class RestServiceController {
     @RequestMapping(value = "/api/getFamousStory", method = RequestMethod.GET)
     public Story getFamousStory() {
         return storyService.getBestStory();
+    }
+
+
+    @RequestMapping(value = "/api/addChildFragment", method = RequestMethod.POST)
+    public Fragment addChildFragment(@RequestParam(value = "id_fragment", defaultValue = "0") int id_fragment,
+                                  @RequestBody Fragment fragment) {
+        Fragment newFragment = new Fragment();
+        newFragment.setChildFragments(new HashSet<>());
+        newFragment.setText(fragment.getText());
+        newFragment.setTitle(fragment.getTitle());
+        newFragment.setLikes(new HashSet<>());
+        return newFragment;
     }
 }
