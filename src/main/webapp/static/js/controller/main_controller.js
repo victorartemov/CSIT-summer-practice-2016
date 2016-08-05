@@ -50,19 +50,19 @@ angular.module('app').controller("home", function($http, $location, $scope ) {
 
 
 
-    $scope.saveFragment = function (index) {
+    $scope.saveFragment = function (index, id_fragment) {
         // use $.param jQuery function to serialize data from JSON
-        var data = {
+        var new_child = {
             title: self.title,
             text: self.text
         };
 
-
-
+        self.famousStoryFragments[index].childFragments.push(new_child);
+        var data = self.famousStoryFragments[index];
         $http.post('/api/addChildFragment', data)
             .success(function (data) {
                 self.response = data;
-                self.addFragment(data, index);
+                self.addFragment(data, index - 1);
                 console.log("post")
                 $location.path("/");
 

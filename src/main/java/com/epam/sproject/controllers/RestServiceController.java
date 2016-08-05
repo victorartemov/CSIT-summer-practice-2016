@@ -37,12 +37,8 @@ public class RestServiceController {
     @RequestMapping(value = "/api/addChildFragment", method = RequestMethod.POST)
     public Fragment addChildFragment(@RequestParam(value = "id_fragment", defaultValue = "0") int id_fragment,
                                   @RequestBody Fragment fragment) {
-        Fragment newFragment = new Fragment();
-        newFragment.setChildFragments(new HashSet<>());
-        newFragment.setText(fragment.getText());
-        newFragment.setTitle(fragment.getTitle());
-        newFragment.setLikes(new HashSet<>());
-        return newFragment;
+
+        return fragment;
     }
 
     @RequestMapping(value = "/api/getAllStory", method = RequestMethod.GET)
