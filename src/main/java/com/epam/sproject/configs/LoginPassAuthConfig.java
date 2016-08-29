@@ -1,6 +1,9 @@
 package com.epam.sproject.configs;
 
 
+import com.epam.sproject.model.entity.User;
+import com.epam.sproject.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,6 +14,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +25,8 @@ import java.util.List;
 @Configuration
 public class LoginPassAuthConfig extends GlobalAuthenticationConfigurerAdapter {
 
+    @Autowired
+    UserService userService;
 
     @Override
     public void init(AuthenticationManagerBuilder auth) {
@@ -31,12 +37,18 @@ public class LoginPassAuthConfig extends GlobalAuthenticationConfigurerAdapter {
                 String login = authentication.getName();
                 String password = authentication.getCredentials().toString();
                 //check login/pass and try to get User information
-               // final User user = storage.getUserByLoginPass(login, password);
-                if (login.compareTo("user") == 0 && password.compareTo("pass") == 0) {
+                User user = null;
+                try {
+                    user = userService.getUserBylogin(login);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (user != null && user.getPassword().compareTo(password) == 0) {
                     List<GrantedAuthority> grantedAuths = new ArrayList<>();
                     grantedAuths.add(new SimpleGrantedAuthority("user"));
                     //push user information as a Principal
-                    return new UsernamePasswordAuthenticationToken(login, password, grantedAuths);
+                    return new UsernamePasswordAuthenticationToken(user.toUserView(), password, grantedAuths);
                 } else {
                     return null;
                 }

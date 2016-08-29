@@ -16,23 +16,15 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public User getUserById(Long userId) throws IOException {
-	User user = userRepository.findOne(userId);
+		User user = userRepository.findOne(userId);
+		return user;
 
-	if (user == null) {
-	    throw new IllegalArgumentException();
-	} else {
-	    return user;
-	}
+
     }
     
     @Override
     public User getUserBylogin(String login) throws IOException {
         User user = userRepository.findByLogin(login);
-	
-	if (user == null) {
-	    throw new IllegalArgumentException();
-	} else {
-	    return user;
-	}
+		return user;
     }
 }

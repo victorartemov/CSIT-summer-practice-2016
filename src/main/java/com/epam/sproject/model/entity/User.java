@@ -98,17 +98,13 @@ public class User extends Item {
         this.comments = comments;
     }
 
+
+    public UserView toUserView(){
+        UserView userView = new UserView(getId(), login, password, role, fullName, rating);
+        return userView;
+    }
     @Override
     public String toString() {
-        return "User{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", rating=" + rating +
-                ", fragments=" + fragments +
-                ", comments=" + comments +
-                ", likedFragments=" + likedFragments +
-                '}';
+        return login;
     }
 }
