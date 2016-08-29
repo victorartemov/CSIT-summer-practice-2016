@@ -25,7 +25,7 @@ public class FragmentDaoImpl implements FragmentDAO {
 
     @Override
     public Fragment getById(Long id) throws IOException {
-        return fragmentRepository.getOne(id);
+        return fragmentRepository.findOne(id);
     }
 
     @Override

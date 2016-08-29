@@ -1,7 +1,9 @@
 package com.epam.sproject.controllers;
 
 import com.epam.sproject.model.entity.Fragment;
+import com.epam.sproject.model.entity.RequestStatus;
 import com.epam.sproject.model.entity.Story;
+import com.epam.sproject.model.entity.User;
 import com.epam.sproject.services.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,24 @@ public class RestServiceController {
     //Simple Get User Information (It's need to recode!!!)
     @RequestMapping("/user")
     public Principal user(Principal principal) {
+
         return principal;
+
+    }
+
+    @RequestMapping(value = "/signUP", method = RequestMethod.POST)
+    public RequestStatus userqqq(Principal principal, @RequestBody User user) {
+        try{
+
+
+            System.out.println(user);
+            return new RequestStatus(0);
+
+        } catch (Exception e) {
+            return new RequestStatus(400);
+
+        }
+
 
     }
 

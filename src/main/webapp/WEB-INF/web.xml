@@ -16,11 +16,11 @@
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
-
-    <!-- Creates the Spring Container shared by all Servlets and Filters -->
     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+        <listener-class>com.epam.sproject.configs.JdbcDriverUnregisteringListener</listener-class>
     </listener>
+    <!-- Creates the Spring Container shared by all Servlets and Filters -->
+
 
     <!-- Processes application requests -->
     <servlet>

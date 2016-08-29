@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDAO {
 
     @Override
     public User getById(Long id) throws IOException {
-        return userRepository.getOne(id);
+        return userRepository.findOne(id);
     }
 
     @Override
