@@ -8,11 +8,11 @@
             </a>
          </span>
          <span class="btn-group">
-            <a href="#/collection" class="btn btn-default">
+            <button ng_click="openCollection()" class="btn btn-default">
                 STORY COLLECTION
-            </a>
+            </button>
          </span>
-         <span class="btn-group">
+         <span ng-show="home.authenticated" class="btn-group">
             <a href="#/profile" class="btn btn-default">
                 MY PROFILE
             </a>

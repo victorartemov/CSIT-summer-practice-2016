@@ -15,6 +15,11 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-cookies.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/module/main_module.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/controller/main_controller.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/controller/story_view_controller.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/controller/collection_controller.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/toastr/angular-toastr.tpls.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-animate.js"></script>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/static/js/toastr/css/angular-toastr.css" />
 
 		<title>Live Stories</title>
 	</head>
@@ -23,7 +28,7 @@
 		<jsp:include page="navigation.jsp"/>
 
 
-		<div ng-view class="container"></div>
+		<div ng-view class="container-fluid"></div>
 
 	</div>
 	</body>

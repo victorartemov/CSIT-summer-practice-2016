@@ -1,5 +1,15 @@
 
-angular.module('app').controller("home", function($http, $location, $scope ) {
+angular.module('app').service('CurrentStates', function($http) {
+    this.currentStory = null;
+    this.currentStoryFragments = null;
+    this.currentFamousStory = null;
+    this.currentFamousStoryFragments = null;
+    this.currentEditIndex = 0;
+
+});
+
+
+angular.module('app').controller("home", function($http, $location, $scope, $route, CurrentStates ) {
 
     var self = this;
 
@@ -19,62 +29,14 @@ angular.module('app').controller("home", function($http, $location, $scope ) {
     });
 
 
-
-    ///////////////////////////////////////////////////////////////////////////
-    $http.get("/api/getFamousStory").success(function(data) {
-        self.famousStory = data;
-        self.famousStoryFragments = [data.rootFragment];
-        console.log("get")
-
-    }).error(function() {
-        self.famousStors = "{\"error\":\"400\"}";
-
-    });
-
-    $http.get("/api/getAllStory").success(function(data) {
-        self.stories=data;
-    }).error(function() {
-        self.stories = [];
-    });
-
-    self.addFragment = function (data, index) {
-        this.famousStoryFragments.splice(index + 1, Number.MAX_VALUE ,data);
+    $scope.openCollection = function (index) {
+        if ($location.path() == '/collection') {
+            $route.reload();
+        } else {
+            $location.path('/collection');
+        }
     };
-
-
-
-    $scope.btnsStyle = [ 'btn-danger', 'btn-primary', 'btn-warning', ''];
-    self.randomBtnStyle = function () {
-        return $scope.btnsStyle[Math.floor(Math.random() * ($scope.btnsStyle.length-1))];
-    };
-
-
-
-    $scope.saveFragment = function (index, id_fragment) {
-        // use $.param jQuery function to serialize data from JSON
-        var new_child = {
-            title: self.title,
-            text: self.text
-        };
-
-        self.famousStoryFragments[index].childFragments.push(new_child);
-        var data = self.famousStoryFragments[index];
-        $http.post('/api/addChildFragment', data)
-            .success(function (data) {
-                self.response = data;
-                self.addFragment(data, index - 1);
-                console.log("post")
-                $location.path("/");
-
-            })
-            .error(function (data) {
-                self.response = "{\"error\":\"400\"}";
-            });
-
-
-
-    };
-    //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
     self.logout = function() {
         $http.post('logout', {}).success(function() {
             self.authenticated = false;
@@ -85,3 +47,5 @@ angular.module('app').controller("home", function($http, $location, $scope ) {
         });
     };
 });
+
+

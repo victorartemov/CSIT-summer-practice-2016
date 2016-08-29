@@ -30,11 +30,11 @@ public class Fragment extends Item {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "fragment_id", referencedColumnName = "id")
     )
-    private Set<User> likes;
+    private Set<User> likes = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "children_fragment", referencedColumnName = "id")
-    private Set<Fragment> childFragments;
+    @JoinColumn(name = "", referencedColumnName = "id")
+    private Set<Fragment> childFragments = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "fragment")
     private Set<Comment> comments = new HashSet<Comment>();
