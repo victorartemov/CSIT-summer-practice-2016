@@ -5,6 +5,7 @@ import com.epam.sproject.model.entity.RequestStatus;
 import com.epam.sproject.model.entity.Story;
 import com.epam.sproject.model.entity.User;
 import com.epam.sproject.services.StoryService;
+import com.epam.sproject.services.impl.StoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class RestServiceController {
 
 
     @Autowired
-    StoryService storyService;
+    StoryServiceImpl storyService;
     //Simple Get User Information (It's need to recode!!!)
     @RequestMapping("/user")
     public Principal user(Principal principal) {

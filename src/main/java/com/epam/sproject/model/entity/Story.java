@@ -50,7 +50,6 @@ public class Story extends Item {
     @Override
     public String toString() {
         return "Story{" +
-                "rootFragment=" + rootFragment +
                 ", title='" + title + '\'' +
                 ", rating=" + rating +
                 '}';

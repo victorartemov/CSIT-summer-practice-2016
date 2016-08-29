@@ -11,11 +11,11 @@ import java.util.Set;
 @Table(name = "fragment")
 public class Fragment extends Item {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
     private Fragment parent;
 
@@ -25,19 +25,19 @@ public class Fragment extends Item {
     @Column(name = "text")
     private String text;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_fragment",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "fragment_id", referencedColumnName = "id")
     )
     private Set<User> likes;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name="fragment_children", joinColumns=@JoinColumn(name="id", referencedColumnName="id"))
     //@JoinColumn(name = "children_fragment", referencedColumnName = "id")
-    private Set<Fragment> childFragments;
+    private Set<Fragment> childFragments = new HashSet<Fragment>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fragment")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "fragment")
     private Set<Comment> comments = new HashSet<Comment>();
 
     @Column(name = "extendable")
@@ -111,13 +111,6 @@ public class Fragment extends Item {
     public String toString() {
         return "Fragment{" +
                 "author=" + author +
-                ", parent=" + parent +
-                ", title='" + title + '\'' +
-                ", text='" + text + '\'' +
-                ", likes=" + likes +
-                ", childFragments=" + childFragments +
-                ", comments=" + comments +
-                ", extendable=" + extendable +
                 '}';
     }
 }

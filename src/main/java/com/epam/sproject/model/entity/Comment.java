@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Table(name = "comment")
 public class Comment extends Item {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private User commentAuthor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fragment_id")
     private Fragment fragment;
 

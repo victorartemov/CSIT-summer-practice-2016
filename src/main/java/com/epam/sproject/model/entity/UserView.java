@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Гога on 19.07.2016.
- */
+
 
 public class UserView {
 
@@ -23,7 +21,6 @@ public class UserView {
     private Long rating;
 
 
-
     public UserView() {
     }
 
@@ -35,7 +32,6 @@ public class UserView {
         this.fullName = fullName;
         this.rating = rating;
     }
-
 
     public Long getId() {
         return id;

@@ -108,22 +108,24 @@ public class StoryServiceImpl implements StoryService {
 */      
         List<Story> stories = storyRepository.findAll();
 
+
 	Story bestStory = null;
 	
         if (stories == null) {
-	    throw new NullPointerException();
+
 	} else {
-	    if (!stories.isEmpty()) {
+	    if (stories.size() > 0) {
 		bestStory = stories.get(0);
 
 		for (Story curStory : stories) {
-		    if (curStory.getRating() > bestStory.getRating()) {
-			bestStory = curStory;
+		    if (curStory.getRating() >= bestStory.getRating()) {
+                bestStory = curStory;
 		    }
 		}
 	    }
 	}
-        
+        System.out.println(bestStory);
+
         return bestStory;
     }
 

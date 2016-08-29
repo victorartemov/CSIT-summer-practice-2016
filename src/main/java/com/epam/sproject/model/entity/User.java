@@ -26,13 +26,13 @@ public class User extends Item {
     @Column(name = "rating")
     private Long rating;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
-    private Set<Fragment> fragments = new HashSet<Fragment>();
+    @Column(name = "author")
+    private Long fragments;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "commentAuthor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "commentAuthor")
     private Set<Comment> comments = new HashSet<Comment>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "likes")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "likes")
     private Set<Fragment> likedFragments = new HashSet<Fragment>();
     public String getLogin() {
         return login;
@@ -74,11 +74,11 @@ public class User extends Item {
         this.rating = rating;
     }
 
-    public Set<Fragment> getFragments() {
+    public Long getFragments() {
         return fragments;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
+    public void setFragments(Long fragments) {
         this.fragments = fragments;
     }
 
