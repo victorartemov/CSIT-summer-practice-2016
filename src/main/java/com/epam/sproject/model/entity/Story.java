@@ -2,6 +2,8 @@ package com.epam.sproject.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "story")
 public class Story extends Item {
 
+	@OneToOne
+	@JoinColumn(name="root_fragment_id")
     private Fragment rootFragment;
 
     @Column(name = "title")

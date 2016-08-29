@@ -1,23 +1,22 @@
 package com.epam.sproject.services.impl;
 
 import com.epam.sproject.model.entity.User;
-import com.epam.sproject.model.dao.UserDAO;
+import com.epam.sproject.model.repository.UserRepository;
 import com.epam.sproject.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 
-//@Service
+@Service
 public class UserServiceImpl implements UserService {
-   // @Autowired
-    UserDAO userDAO;
-
-   // @Transactional
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Override
     public User getUserById(Long userId) throws IOException {
-	User user = userDAO.getById(userId);
+	User user = userRepository.findOne(userId);
 
 	if (user == null) {
 	    throw new IllegalArgumentException();
@@ -26,9 +25,9 @@ public class UserServiceImpl implements UserService {
 	}
     }
     
-  //  @Transactional
+    @Override
     public User getUserBylogin(String login) throws IOException {
-        User user = userDAO.getUserByLogin(login);
+        User user = userRepository.findByLogin(login);
 	
 	if (user == null) {
 	    throw new IllegalArgumentException();

@@ -32,7 +32,7 @@ public class User extends Item {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "commentAuthor")
     private Set<Comment> comments = new HashSet<Comment>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "Likes")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "likes")
     private Set<Fragment> likedFragments = new HashSet<Fragment>();
     public String getLogin() {
         return login;
