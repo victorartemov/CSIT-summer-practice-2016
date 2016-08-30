@@ -37,6 +37,11 @@ public class FragmentServiceImpl implements FragmentService {
     }
 
     @Override
+    public void updateFragment(Fragment fragment) {
+        fragmentRepository.saveAndFlush(fragment);
+    }
+    
+    @Override
     public int addLike(Long fragmentId, Long userId) throws IOException {
 	Fragment fragment = fragmentRepository.findOne(fragmentId);
 	User user = userRepository.findOne(userId);
