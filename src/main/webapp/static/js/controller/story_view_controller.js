@@ -67,16 +67,18 @@ angular.module('app').controller("StoryView", function($http, $location, $scope,
             if ($location.path() == '/collection') {
                 index = $scope.current_index;
             }
-            console.log(index);
 
             $scope.currentStoryFragments[index].childFragments.push(new_child);
 
             var data = $scope.currentStoryFragments[index];
-            $http.post('/api/addChildFragment', data)
+            
+            console.log(data.id);
+
+            $http.post('/api/addChildFragment?id_fragment=' + data.id, new_child)
                 .success(function (data) {
                     toastr.success('Новый фрагмент размещен');
 
-                    $scope.addFragment(data, index - 1);
+                    $scope.addFragment(new_child, index);
                     console.log("post");
 
 

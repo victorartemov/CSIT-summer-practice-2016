@@ -63,7 +63,7 @@ public class RestServiceController {
         Fragment parentFragment;
 
         try {
-            parentFragment = fragmentService.getFragmentById((long) 1);
+            parentFragment = fragmentService.getFragmentById((long) id_fragment);
 
             if (parentFragment.getChildFragments().size() < 3) {
                 parentFragment.getChildFragments().add(fragment);
