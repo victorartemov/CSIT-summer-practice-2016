@@ -14,10 +14,13 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-route.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-cookies.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/module/loginActivity.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/toastr/angular-toastr.tpls.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/angularjs/1.4.3/angular-animate.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/js/toastr/css/angular-toastr.css" />
     <title>Login page</title>
 </head>
 
-<body ng-app="auth" >
+<body ng-app="auth" ng-controller="auth_controller" >
 
 <p>&nbsp;</p>
 <p></p>

@@ -1,9 +1,6 @@
 package com.epam.sproject.controllers;
 
-import com.epam.sproject.model.entity.Fragment;
-import com.epam.sproject.model.entity.RequestStatus;
-import com.epam.sproject.model.entity.Story;
-import com.epam.sproject.model.entity.User;
+import com.epam.sproject.model.entity.*;
 import com.epam.sproject.services.StoryService;
 import com.epam.sproject.services.UserService;
 import com.epam.sproject.services.impl.StoryServiceImpl;
@@ -36,14 +33,9 @@ public class RestServiceController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public RequestStatus signUp(Principal principal) {
+    public RequestStatus signUp(Principal principal, @RequestBody User user) {
         try {
-            User user = new User();
-            
-            user.setLogin("login");
-            user.setFullName("name");
-            user.setPassword("password");
-            
+
             userService.registerNewUser(user);
             
             return new RequestStatus(0);

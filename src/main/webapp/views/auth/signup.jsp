@@ -10,13 +10,13 @@
             <p>&nbsp;</p>
             <p></p>
 
-            <form  method="post" class="form-inline" >
-                <div><label> Username <input class="form-control" type="text" name="username" required="required" /> </label></div>
-                <div><label> Password <input class="form-control" type="password" name="password" required="required" /> </label></div>
-                <div><label> PassRepeat <input class="form-control" type="password" name="password" required="required" /> </label></div>
+            <form  class="form-inline"  name="form" >
+                <div><label> Username <input class="form-control" type="text" ng-model="username" ng-required="true" /> </label></div>
+                <div><label> Password <input class="form-control" type="password" ng-model="pass" ng-required="true" /> </label></div>
+                <div><label> PassRepeat <input class="form-control" type="password" ng-model="pass_one" ng-required="true" /> </label></div>
 
                 <div class="col-sm-offset-3 col-sm-10">
-                    <input type="submit" class="btn btn-success" value="Sign Up"/>
+                    <input type="submit" ng-click="signUp(form.$valid)" class="btn btn-success" value="Sign Up"/>
                 </div>
 
                 <div><input type="hidden" name="referrer" value="${param.referrer}" /></div>
