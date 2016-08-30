@@ -11,20 +11,24 @@ import java.io.IOException;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserRepository userRepository;
-    
+
     @Override
     public User getUserById(Long userId) throws IOException {
-		User user = userRepository.findOne(userId);
-		return user;
-
-
+        User user = userRepository.findOne(userId);
+        return user;
     }
-    
+
     @Override
     public User getUserBylogin(String login) throws IOException {
         User user = userRepository.findByLogin(login);
-		return user;
+        return user;
+    }
+
+    @Override
+    public void registerNewUser(User user) throws IOException {
+        userRepository.saveAndFlush(user);
     }
 }

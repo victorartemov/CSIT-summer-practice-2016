@@ -8,4 +8,6 @@ public interface UserService {
     User getUserById(Long userId) throws IOException;
     
     User getUserBylogin(String login) throws IOException;
+
+    void registerNewUser(User user) throws IOException;
 }
